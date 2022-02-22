@@ -1,0 +1,27 @@
+{
+  "name": "wordcloud-search",
+  "version": "1.0.0",
+  "description": "",
+  "main": "searchword.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node searchword.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hrefdata/wordcloud-backend.git"
+  },
+  "keywords": [
+    "wordcloud"
+  ],
+  "author": "son",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hrefdata/wordcloud-backend/issues"
+  },
+  "homepage": "https://github.com/hrefdata/wordcloud-backend#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "request": "^2.88.2"
+  }
+}
