@@ -72,10 +72,6 @@ textarea::-webkit-placeholder {
     border: 2px dashed #21dc6d;
   }
   
-  .Card__header {
-    margin-top: 20px;
-  }
-  
   .Card__body {
     width: 100%;
     height: 50%;
