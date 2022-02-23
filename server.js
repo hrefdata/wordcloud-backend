@@ -26,14 +26,14 @@ app.get("/",(req, res) => {
   res.sendFile(__dirname, 'index.html');
 });
 
-app.post("/blog", (req, res) => {
+app.post("/news", (req, res) => {
 
   console.log(req.body);
   console.log(typeof req.body); 
 
-  // const { text:query} = req.body;
+  const { text:query} = req.body;
 
-  const url = "https://openapi.naver.com/v1/search/blog.json?query=" + encodeURI(req.query.query) + "&display=10&start=1&sort=sim";
+  const url = "https://openapi.naver.com/v1/search/news.json?query=" + encodeURI(query) + "&display=10&start=1&sort=sim";
   //  + encodeURI(query) + "&display=10&start=1&sort=sim";
   
   const options = {
