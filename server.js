@@ -47,14 +47,16 @@ app.post("/news", (req, res) => {
 
   request.get(options, (error, response, body) => { 
     if(!error && response.statusCode == 200){
-      // res.writeHead(200, {'Content-Type': 'text/json;charset=utf-8'});
-      // res.end(body);
+
       res.json(body);
     }else{
       console.log(`error = ${response.statusCode}`);
     }
   });
 });
+
+
+
 
 app.listen(3000, () => {
   console.log('http://127.0.0.1:3000/ app listening on port 3000!');
