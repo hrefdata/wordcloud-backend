@@ -1,50 +1,61 @@
-// 네이버 검색 API예제는 블로그를 비롯 전문자료까지 호출방법이 동일하므로 blog검색만 대표로 예제를 올렸습니다.
-// 네이버 검색 Open API 예제 - 블로그 검색
-const ID = "NP7hbgdLPOddcqJJePhg";
-const KEY = "6WF9C0H4do";
+const express = require("express"); // express 패키지 import
 
-const express = require('express');
 const app = express();
 
-const client_id = ID;
-const client_secret = KEY;
+// API Key를 별도 관리 : dot(.) env 활용, .env라는 파일에 key를 보관하고, dotenv가 .env파일을 활용해서, process.env 객체에 포함시킴.
 
+const dotenv = require("dotenv");
+dotenv.config();
 
+const clientId = process.env.client_id
+const clientSecret = process.env.CLIENT_SECRET
 
+//node.js 서버가 또 다른 client가 되어 Naver 서버에 요청을 보내기 위해 사용.
 const request = require('request');
 
-// express의 static 미들웨어 활용
+// express의 static 미들웨어 활용.
 app.use(express.static('public'));
 
-// express의 json 미들웨어 사용
+// express의 json 미들웨어 활용.
 app.use(express.json());
 
-app.get("/",(req,res)=>{
-  res.sendFile( __dirname,'index.html');
+
+app.get("/",(req, res) => {
+  // root url, 즉 메인 페이지로 접속했을 때 papago의 메인 페이지가 나와야함.
+  // public / ~
+  res.sendFile(__dirname, 'index.html');
 });
 
+app.post("/blog", (req, res) => {
 
-app.get('/search/blog', function (req, res) {
-   var api_url = 'https://openapi.naver.com/v1/search/blog?query=' + encodeURI(req.query.query); // json 결과
+  console.log(req.body);
+  console.log(typeof req.body); 
 
-   var options = {
-       url: api_url,
-       headers: {
-         'X-Naver-Client-Id':client_id, 
-         'X-Naver-Client-Secret': client_secret}
-    };
-    
-   request.get(options, function (error, response, body) {
-     if (!error && response.statusCode == 200) {
-       res.writeHead(200, {'Content-Type': 'text/json;charset=utf-8'});
-       res.end(body);
-     } else {
-       res.status(response.statusCode).end();
-       console.log('error = ' + response.statusCode);
-     }
-   });
- });
- 
- app.listen(3000, function () {
+  // const { text:query} = req.body;
+
+  const url = "https://openapi.naver.com/v1/search/blog.json?query=" + encodeURI(req.query.query) + "&display=10&start=1&sort=sim";
+  //  + encodeURI(query) + "&display=10&start=1&sort=sim";
+  
+  const options = {
+    url: url,
+    headers: {
+        "X-Naver-Client-Id": clientId,
+        "X-Naver-Client-Secret": clientSecret,
+    }
+
+  };
+
+  request.get(options, (error, response, body) => { 
+    if(!error && response.statusCode == 200){
+      // res.writeHead(200, {'Content-Type': 'text/json;charset=utf-8'});
+      // res.end(body);
+      res.json(body);
+    }else{
+      console.log(`error = ${response.statusCode}`);
+    }
+  });
+});
+
+app.listen(3000, () => {
   console.log('http://127.0.0.1:3000/ app listening on port 3000!');
 });
