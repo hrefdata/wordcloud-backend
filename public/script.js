@@ -24,7 +24,7 @@ sourceTextArea.addEventListener('input', (event) => {
     if(text) {
       const xhr = new XMLHttpRequest();
 
-      const url = '/blog';
+      const url = '/news';
 
       xhr.onreadystatechange = () => {
         if (xhr.readyState == 4 & xhr.status == 200) {
