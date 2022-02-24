@@ -1,26 +1,25 @@
 {
-  "name": "wordcloud-backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "request": "^2.88.2",
+    "require": "^2.4.20"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+  "name": "wordcloud-backend",
+  "description": "",
+  "version": "1.0.0",
+  "main": "server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hrefdata/wordcloud-backend.git"
   },
-  "author": "son",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/hrefdata/wordcloud-backend/issues"
   },
-  "homepage": "https://github.com/hrefdata/wordcloud-backend#readme",
-  "dependencies": {
-    "dotenv": "^16.0.0",
-    "express": "^4.17.3",
-    "koalanlp": "^2.1.3",
-    "request": "^2.88.2"
-  }
+  "homepage": "https://github.com/hrefdata/wordcloud-backend#readme"
 }
